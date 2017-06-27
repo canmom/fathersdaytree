@@ -1,10 +1,14 @@
 {
   "name": "fathersdaytree",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "An animated growing tree using anime.js and some text for my dad.",
   "main": "index.js",
   "dependencies": {
     "animejs": "^2.0.2",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "babel-preset-babili": "^0.1.4",
+    "babel-preset-env": "^1.5.2",
     "lodash.times": "^4.3.2",
     "webpack": "^2.6.1"
   },
@@ -18,7 +22,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "pack": "webpack -p",
     "start": "webpack-dev-server",
     "lint": "eslint ."
   },
