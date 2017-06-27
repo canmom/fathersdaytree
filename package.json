@@ -23,5 +23,6 @@
     "lint": "eslint ."
   },
   "author": "canmom",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": "https://github.com/canmom/fathersdaytree.git"
 }
