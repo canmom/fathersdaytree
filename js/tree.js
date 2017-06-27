@@ -29,6 +29,7 @@ class Generation {
 
     if (prevGen) {
       this.genScale = prevGen.genScale * parameters.branch.scale;
+      this.isRoot = false;
       let angles;
       let scale;
 
@@ -53,6 +54,7 @@ class Generation {
     } else {
       // this is the base node of the tree
       this.genScale = 1;
+      this.isRoot = true;
       this.makeRoot(
         parameters.root.originx,
         parameters.root.originy,
@@ -69,11 +71,25 @@ class Generation {
   animate(timeline) {
     const elements = this.nodes.map(node => node.element);
     const animProperties = (this.isLeaves ? Leaf : Branch).animProperties(this.baseLength);
+    let easing;
+    let duration;
+    if (this.isLeaves) {
+      easing = 'easeOutQuart';
+      duration = 1000;
+    } else if (this.isRoot) {
+      easing = 'easeInQuad';
+      duration = 800 * this.genScale;
+    } else {
+      easing = 'linear';
+      duration = 500 * this.genScale;
+    }
+
     timeline.add(
       Object.assign(
         {
           targets: elements,
-          duration: this.isLeaves ? 1000 : 500 * this.genScale,
+          duration,
+          easing,
           begin: this.reveal.bind(this),
         },
         animProperties,
@@ -94,9 +110,6 @@ export default class Tree {
     this.generations = [];
     this.svgElement = svgElement;
     this.timeline = anime.timeline();
-
-    // create the first generation
-    this.generations.push(new Generation(svgElement, false, parameters));
 
     let prevGeneration;
     let thisGeneration;

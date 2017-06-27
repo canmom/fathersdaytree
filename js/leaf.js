@@ -15,7 +15,6 @@ export default class Leaf extends TreeNodeBase {
       cy: length / 2,
       rx: length / 4,
       ry: length / 2,
-      easing: 'easeOutQuart',
     };
   }
 }

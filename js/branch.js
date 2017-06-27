@@ -13,7 +13,6 @@ export default class Branch extends TreeNodeBase {
   static animProperties(length) {
     return {
       y2: length,
-      easing: 'linear',
     };
   }
 }
