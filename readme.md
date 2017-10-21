@@ -1,12 +1,22 @@
-My dad is a web developer, and I wanted to make something cool and pretty for him as a special kind of card.
+Displays an animated SVG fractal tree, animated as growing out of the ground. Could potentially allow drawing of an arbitrary number of trees.
 
-This HTML page displays an animated fractal tree, animated as growing out of the ground. The structure could potentially allow drawing of an arbitrary number of trees.
+The fractal is based on a recursive scheme, where each branch takes on the transformation of the previous branch, translates itself along the length of that branch, and rotates and is scaled.
+
+This is possible because each command in an SVG transform property also transforms the coordinate system of the element. So, for example, if you scale an element by a factor of 0.8 and then translated it by a length 1, it will only be moved a length of 0.8. If it is rotated by 20 degrees and then translated in the Y direction, the translation will 20 degrees from the Y translation.
+
+[Anime.js](http://animejs.com/) is used to create the growing animation of each branch, by moving the endpoint of the svg line element. All branches are transformed in the same simple way, but due to the coordinate system transformations, they grow in many directions.
+
+The sliders at the bottom of the screen control parameters: the base angle between successive branches (on top of which a small amount of variation is added), the size of each branch relative to the previous, and the number of fractal generations.
+
+At the end of each branch is a small cluster of branch-sized elliptical leaves with random angles.
+
+This project was created in a day to be a birthday card for my dad, hence the 'Happy fathers' day!' text.
 
 ## Results
 
 ![An animated tree grows from a point, along with the words 'happy fathers' day' and then 'I love you so much dad' with a heart emoji](recording.gif)
 
-A live version can be seen [here](https://canmom.github.io/fathersdaytree).
+You can play with a live version [here](https://canmom.github.io/fathersdaytree).
 
 ## Setup
 
